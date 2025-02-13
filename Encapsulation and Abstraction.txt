@@ -1,0 +1,2887 @@
+ERROR IDENTIFYING:
+ENCAPSULATION:
+
+Que 1: 
+
+class Person {
+    private String name;
+
+    void display() {
+        System.out.println("Name: " + name);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.name = "John";
+        p.display();
+    }
+}
+
+
+Question: What is the error in the above code?
+Answer: The name variable is private and cannot be accessed directly outside the Person class.
+
+Follow-up: How can we access name while maintaining encapsulation?
+Answer: We should create public getter and setter methods to access and modify name safely.
+
+
+Que 2:
+class BankAccount {
+    private double balance;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount();
+        System.out.println(acc.balance);
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: The balance variable is private, and there is no method to access it from outside the class.
+
+Follow-up: How can we access the balance variable correctly?
+Answer: We should add a public getter method:
+public double getBalance() {
+    return balance;
+}
+
+
+Que 3:
+class Student {
+    private int rollNo;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.rollNo = 101;    }
+}
+
+Question: Why is s.rollNo = 101; causing an error?
+Answer: The rollNo field is private, so it cannot be accessed directly outside the Student class.
+
+Follow-up: How can we modify rollNo without making it public?
+Answer: Use a setter method:
+public void setRollNo(int rollNo) {
+    this.rollNo = rollNo;
+}
+
+
+Que 4:
+class Car {
+    private String model;
+
+    public void setModel() {
+        this.model = model;
+    }
+}
+
+Question: What is wrong with the setModel method?
+Answer: The method does not take a parameter, so model remains unchanged.
+
+Follow-up: How should the correct setter method be written?
+Answer:
+public void setModel(String model) {
+    this.model = model;
+}
+
+
+Que 5:
+
+class Employee {
+    private int id;
+
+    public int getId() {
+    }
+}
+
+Question: Why is the getId() method incorrect?
+Answer: The method does not return a value, so it does not compile.
+
+Follow-up: How can we correct it?
+Answer:
+public int getId() {
+    return id;
+}
+
+
+Que 6:
+class Rectangle {
+    private double length;
+    private double width;
+
+    void updateLength(double len) {
+        length = len;    }
+}
+
+Question: Why is the updateLength() method violating encapsulation principles?
+Answer: The method directly modifies the private variable without a setter method, reducing control over data modification.
+
+Follow-up: What is the proper way to update length while maintaining encapsulation?
+Answer: Use a public setter method:
+public void setLength(double length) {
+    this.length = length;
+}
+
+Que 7:
+class Laptop {
+    private String brand;
+
+    private void showBrand() {
+        System.out.println("Brand: " + brand);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Laptop l = new Laptop();
+        l.showBrand();
+    }
+}
+
+Question: Why does the call l.showBrand(); result in an error?
+Answer: The showBrand() method is private and cannot be accessed from outside the Laptop class.
+
+Follow-up: How can we allow controlled access to showBrand()?
+Answer: Change the method to public or provide a public method to call it:
+public void displayBrand() {
+    showBrand();
+}
+
+
+Que 8:
+class Phone {
+    private Phone() {
+        System.out.println("Phone object created");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Phone p = new Phone();
+    }
+}
+
+Question: Why does the above code cause an error?
+Answer: The constructor is private, preventing object creation from outside the class.
+
+Follow-up: In which scenario would making a constructor private be useful?
+Answer: It is useful in Singleton design patterns, where only one instance of a class is allowed.
+
+
+Que 9:
+class User {
+    private String password;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        User u = new User();
+        System.out.println(u.password);
+    }
+}
+
+Question: Why can't we print password directly?
+Answer: The password field is private and cannot be accessed outside the User class.
+
+Follow-up: How can we securely retrieve and modify the password?
+Answer: Provide getter and setter methods with validation:
+public void setPassword(String password) {
+    if (password.length() >= 6) {
+        this.password = password;
+    } else {
+        System.out.println("Password too short");
+    }
+}
+
+public String getPassword() {
+    return "****"; // Masked for security
+}
+
+Que 10:
+class Book {
+    private String title;
+
+    public void setTitle(String title) {
+        title = title; // Error
+    }
+}
+
+Question: Why does setTitle() fail to update title?
+Answer: The local parameter title is shadowing the instance variable, so this.title remains unchanged.
+
+Follow-up: How can we properly update the title variable?
+Answer: Use this to refer to the instance variable:
+public void setTitle(String title) {
+    this.title = title;
+}
+
+Que 11:
+class Account {
+    private double balance = 5000;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Account acc = new Account();
+        System.out.println(acc.balance);
+    }
+}
+
+Question: Why does this code fail?
+Answer: The balance variable is private and cannot be accessed directly outside the class.
+
+Follow-up: How can we access balance while maintaining encapsulation?
+Answer: Use a public getter method.
+
+Que 12:
+class User {
+    private String password;
+    
+    public String getPassword() {
+        return password;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        User u = new User();
+        u.password = "abc123";
+    }
+}
+
+Question: What is the issue in this code?
+Answer: password is private, so it cannot be modified directly.
+
+Follow-up: How can we allow modification while keeping encapsulation?
+Answer: Add a setter method.
+
+Que 13:
+class Car {
+    public String model;
+}
+public class Test {
+    public static void main(String[] args) {
+        Car c = new Car();
+        c.model = "Tesla";
+    }
+}
+
+Question: Does this violate encapsulation?
+Answer: Yes, because the field is public, allowing direct modification.
+
+Follow-up: How should we fix this?
+Answer: Declare model as private and use getter/setter methods.
+
+Que 14:
+class Student {
+    private String name;
+    
+    Student(String studentName) {}
+    
+    public String getName() {
+        return name;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student("John");
+        System.out.println(s.getName());
+    }
+}
+
+Question: Why does this code return null?
+Answer: The constructor does not assign studentName to name.
+
+Follow-up: How can we fix this?
+Answer: Assign this.name = studentName; inside the constructor.
+
+Que 15:
+class Logger {
+    private Logger() {} // Private constructor
+}
+public class Test {
+    public static void main(String[] args) {
+        Logger log = new Logger();
+    }
+}
+
+Question: Why does this code fail?
+Answer: A private constructor prevents object instantiation outside the class.
+
+Follow-up: When would using a private constructor be useful?
+Answer: In Singleton design patterns.
+
+ABSTRACTION:
+
+Que 1:
+abstract class Game {
+    abstract void start();
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Game g;
+        g.start();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: The reference g is declared but not initialized.
+
+Follow-up: How can we fix this while maintaining abstraction?
+Answer: Instantiate a subclass or use an anonymous class.
+
+Que 2:
+class Worker {
+    abstract void performTask();
+    abstract void takeBreak();
+}
+
+Question: What mistake does this code contain?
+Answer: A class containing abstract methods must itself be declared abstract.
+
+Follow-up: How can we fix it?
+Answer: Add abstract before class Worker.
+
+Que 3:
+abstract class Robot {
+    private abstract void process();
+}
+
+Question: Why does this code fail?
+Answer: Abstract methods must be at least protected or public so subclasses can implement them.
+
+Follow-up: What should be the correct access modifier?
+Answer: Use protected or public.
+
+Que 4:
+abstract class Bank {
+    static abstract void loanPolicy();
+}
+
+Question: What is wrong with this declaration?
+Answer: Abstract methods cannot be static because they must be overridden in a subclass.
+
+Follow-up: What happens if we remove static?
+Answer: The code will compile correctly.
+
+Que 5:
+abstract class Animal {
+    abstract void makeSound();
+}
+
+class Dog extends Animal {
+    void makeSound(int x) {
+        System.out.println("Bark");
+    }
+}
+
+
+Question: Why does Dog still show an error?
+Answer: The method signature does not match the abstract method's signature.
+
+Follow-up: How should we correct this?
+Answer: Change the method signature to void makeSound().
+
+Que 6:
+interface Engine {
+    Engine() {
+        System.out.println("Engine Created");
+    }
+}
+
+Question: What is the issue with this code?
+Answer: Interfaces cannot have constructors.
+
+Follow-up: Why?
+Answer: Because interfaces do not have instance variables to initialize.
+
+Que 7:
+interface Printer {
+    void print();
+    void scan();
+}
+
+class LaserPrinter implements Printer {
+    public void print() {
+        System.out.println("Printing...");
+    }
+}
+
+Question: What problem does this code have?
+Answer: The LaserPrinter class does not implement the scan() method.
+
+Follow-up: How can we fix it?
+Answer: Either implement scan() or declare LaserPrinter as abstract.
+
+Que 8:
+abstract class Gadget {
+    abstract void charge();
+}
+
+class Phone extends Gadget {}
+
+public class Test {
+    public static void main(String[] args) {
+        Phone p = new Phone();
+        p.charge();
+    }
+}
+
+Question: Why does this cause an error?
+Answer: The Phone class does not implement the charge() method.
+
+Follow-up: How do we correct it?
+Answer: Implement charge() inside Phone.
+
+Que 9:
+interface Sound {
+    void play();
+    void stop();
+}
+
+abstract class MusicPlayer implements Sound {
+    public void play() {
+        System.out.println("Playing music...");
+    }
+}
+
+Question: Why does MusicPlayer compile successfully even though it doesn’t implement stop()?
+Answer: Because MusicPlayer is abstract, it is not required to implement all interface methods.
+
+Follow-up: What happens if we make MusicPlayer concrete?
+Answer: It will cause a compilation error.
+
+Que 10:
+final class Device {
+    abstract void powerOn();
+}
+
+Question: What is wrong with this code?
+Answer: A final class cannot have abstract methods because it cannot be extended.
+
+Follow-up: How can we fix this?
+Answer: Remove final or make the method concrete.
+
+Que 11:
+abstract class Tool {
+    void use() {
+        System.out.println("Using tool...");
+    }
+}
+
+
+Question: Is this a valid abstract class?
+Answer: Yes, an abstract class can have only concrete methods.
+
+Follow-up: Why might we declare a class abstract even if it has no abstract methods?
+Answer: To prevent direct instantiation.
+
+Que 12:
+interface Computer {
+    default void boot() {
+        System.out.println("Booting...");
+    }
+}
+
+Question: Is this a valid interface?
+Answer: Yes, an interface can have default methods.
+
+Follow-up: How does a default method differ from an abstract method?
+Answer: A default method has an implementation, while an abstract method does not.
+
+Que 13:
+abstract class Device {
+    Device() {
+        configure();
+    }
+    abstract void configure();
+}
+class Laptop extends Device {
+    void configure() {
+        System.out.println("Laptop configured");
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Laptop l = new Laptop();
+    }
+}
+
+Question: Will this code work?
+Answer: Yes, but calling an abstract method in a constructor can lead to issues if the method depends on subclass initialization.
+
+Follow-up: What is the potential risk in this approach?
+Answer: The abstract method might access uninitialized fields of the subclass.
+
+Que 14:
+abstract class Vehicle {
+    final void start() {
+        System.out.println("Starting...");
+    }
+}
+class Bike extends Vehicle {
+    void start() {
+        System.out.println("Bike starting...");
+    }
+}
+
+
+Question: Why does this code fail?
+Answer: The start() method in Vehicle is final, so it cannot be overridden.
+
+Follow-up: How should we fix it?
+Answer: Remove final from start().
+
+Que 15:
+abstract class Gadget {
+    abstract void turnOn();
+    abstract void turnOff();
+}
+
+class Smartphone extends Gadget {
+    void turnOn() {
+        System.out.println("Smartphone turning on");
+    }
+}
+
+
+Question: What is wrong with this code?
+Answer: The turnOff() method is not implemented.
+
+Follow-up: How can we fix this?
+Answer: Implement the turnOff() method or declare Smartphone as abstract.
+
+================================================================================================
+
+OUTPUT QUESTIONS:
+ENCAPSULATION:
+
+Que 1:
+class Person {
+    private String name = "Alice";
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person p = new Person();
+        System.out.println(p.getName());
+    }
+}
+
+Question: What will be the output?
+Answer: Alice
+
+Follow-up: Why can't we access name directly in main?
+Answer: Because name is private and only accessible through the getter.
+
+Que 2:
+class Car {
+    private int speed;
+    
+    public int getSpeed() {
+        return speed;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Car c = new Car();
+        System.out.println(c.getSpeed());
+    }
+}
+
+Question: What will be the output?
+Answer: 0 (default value for an int)
+
+Follow-up: What would be the default value if speed were of type double?
+Answer: 0.0
+
+Que 3:
+class BankAccount {
+    private double balance = 1000.50;
+    
+    public void setBalance(double amount) {
+        balance = amount;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount();
+        acc.setBalance(500.75);
+        System.out.println(acc.getBalance());
+    }
+}
+
+Question: What will be the output?
+Answer: 500.75
+
+Follow-up: What happens if we remove the setBalance method?
+Answer: The balance remains unchanged (1000.50).
+
+
+Que 4:
+class Student {
+    private int age;
+
+    public void setAge(int a) {
+        if (a > 0) {
+            age = a;
+        }
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.setAge(-5);
+        System.out.println(s.getAge());
+    }
+}
+
+Question: What will be the output?
+Answer: 0 (default int value, as setAge(-5) does not update age)
+
+Follow-up: How can we ensure that age is always set to a positive value?
+Answer: By handling invalid input in the setter (e.g., throwing an exception or setting a default positive value).
+
+Que 5:
+class Employee {
+    private String name;
+    
+    Employee(String n) {
+        name = n;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Employee e = new Employee("John");
+        System.out.println(e.getName());
+    }
+}
+
+Question: What will be the output?
+Answer: John
+
+Follow-up: What happens if we do not provide a constructor?
+Answer: The default constructor will be used, and name will remain null.
+
+Que 6:
+class Data {
+    private int value = 42;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Data d = new Data();
+        // System.out.println(d.value); // Uncomment this line
+    }
+}
+
+
+Question: What will happen if we uncomment System.out.println(d.value);?
+Answer: Compilation error (value is private and inaccessible).
+
+Follow-up: How can we access value?
+Answer: By adding a getValue() method.
+
+
+Que 7:
+class Book {
+    private String title = "Java Basics";
+
+    public void printTitle() {
+        System.out.println(title);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Book b = new Book();
+        b.printTitle();
+    }
+}
+
+
+Question: What will be the output?
+Answer: Java Basics
+
+Follow-up: Can we modify title directly in main?
+Answer: No, because it is private.
+
+Que 8:
+class User {
+    private String username;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        User u = new User();
+        u.setUsername("Admin");
+        System.out.println(u.getUsername());
+    }
+}
+
+Question: What will be the output?
+Answer: Admin
+
+Follow-up: What happens if we remove this. in setUsername?
+Answer: The method parameter will shadow the instance variable, and username will remain null.
+
+Que 9:
+class Product {
+    private double price = 99.99;
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Product p1 = new Product();
+        Product p2 = new Product();
+        System.out.println(p1.getPrice() + p2.getPrice());
+    }
+}
+
+Question: What will be the output?
+Answer: 199.98
+
+Follow-up: Why do both objects have the same price value?
+Answer: Because each instance initializes price to 99.99.
+
+Que 10:
+class ImmutableData {
+    private final int id;
+
+    ImmutableData(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        ImmutableData obj = new ImmutableData(10);
+        System.out.println(obj.getId());
+    }
+}
+
+
+Question: What will be the output?
+Answer: 10
+
+Follow-up: Can we modify id after object creation?
+Answer: No, because it is final and can only be set in the constructor.
+
+Que 11:
+class Counter {
+    private int count = 5;
+
+    public void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Counter c = new Counter();
+        c.increment();
+        System.out.println(c.getCount());
+    }
+}
+
+Question: What will be the output?
+Answer: 6
+
+Follow-up: What happens if we call increment() twice before printing?
+Answer: The output will be 7 since count increases by 1 each time.
+
+Que 12:
+class Animal {
+    private String type = "Mammal";
+
+    public String getType() {
+        return type;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        // System.out.println(a.type); // Uncomment this line
+        System.out.println(a.getType());
+    }
+}
+
+Question: What will be the output?
+Answer: Mammal
+
+Follow-up: What happens if we uncomment System.out.println(a.type);?
+Answer: A compilation error occurs because type is private.
+
+Que 13:
+class Account {
+    private double balance = 1000;
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Account acc = new Account();
+        // acc.balance = 500; // Uncomment this line
+        System.out.println(acc.getBalance());
+    }
+}
+
+Question: What will be the output?
+Answer: 1000
+
+Follow-up: How can we allow controlled modification of balance?
+Answer: By adding a setter method (e.g., setBalance(double amount)).
+
+Que 14:
+class Laptop {
+    private String brand;
+
+    Laptop(String b) {
+        brand = b;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Laptop l = new Laptop("Dell");
+        System.out.println(l.getBrand());
+    }
+}
+
+
+Question: What will be the output?
+Answer: Dell
+
+Follow-up: What happens if we do not pass "Dell" while creating the object?
+Answer: A compilation error occurs because the constructor requires a parameter.
+
+Que 15:
+class Student {
+    private String name;
+
+    Student(String n) {
+        name = n;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s1 = new Student("Alice");
+        Student s2 = new Student("Bob");
+        System.out.println(s1.getName() + " & " + s2.getName());
+    }
+}
+
+Question: What will be the output?
+Answer: Alice & Bob
+
+Follow-up: How can we modify name after object creation?
+Answer: By adding a setter method (e.g., setName(String name)).
+
+
+ABSTRACTION:
+
+Que 1:
+abstract class Shape {
+    abstract void draw();
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();
+    }
+}
+
+Question: What will be the output?
+Answer: Drawing Circle
+
+Follow-up: What happens if we try to instantiate Shape directly?
+Answer: A compilation error occurs because abstract classes cannot be instantiated.
+
+Que 2:
+abstract class Animal {
+    abstract void makeSound();
+
+    void sleep() {
+        System.out.println("Sleeping...");
+    }
+}
+
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Barking");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.makeSound();
+        d.sleep();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Barking  
+Sleeping...
+
+Follow-up: Why is sleep() not overridden in Dog?
+Answer: Because it is a concrete (non-abstract) method, and Dog inherits it as is.
+
+Que 3:
+abstract class Vehicle {
+    void type() {
+        System.out.println("Vehicle type");
+    }
+}
+
+class Car extends Vehicle {
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Car c = new Car();
+        c.type();
+    }
+}
+
+Question: What will be the output?
+Answer: Vehicle type
+
+Follow-up: Is it necessary for an abstract class to have an abstract method?
+Answer: No, an abstract class can have only concrete methods.
+
+Que 4:
+abstract class Game {
+    abstract void play();
+}
+
+class Cricket extends Game {
+    void play() {
+        System.out.println("Playing Cricket");
+    }
+}
+
+class Football extends Game {
+    void play() {
+        System.out.println("Playing Football");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Game g1 = new Cricket();
+        Game g2 = new Football();
+        g1.play();
+        g2.play();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Playing Cricket  
+Playing Football
+
+Follow-up: What would happen if Cricket did not override play()?
+Answer: A compilation error occurs because an abstract method must be implemented in the subclass.
+
+Que 5:
+abstract class Device {
+    Device() {
+        System.out.println("Device Created");
+    }
+    abstract void start();
+}
+
+class Laptop extends Device {
+    void start() {
+        System.out.println("Laptop Starting...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Laptop l = new Laptop();
+        l.start();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Device Created  
+Laptop Starting...
+
+Que 6:
+abstract class Instrument {
+    abstract void play();
+}
+
+class Piano extends Instrument {
+    void play() {
+        System.out.println("Playing Piano");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Instrument i = new Piano();
+        i.play();
+    }
+}
+
+Question: What will be the output?
+Answer: Playing Piano
+
+Follow-up: Can we create an object of Instrument?
+Answer: No, because it is an abstract class.
+
+Que 7:
+interface Animal {
+    void sound();
+}
+
+class Cat implements Animal {
+    public void sound() {
+        System.out.println("Meow");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Cat();
+        a.sound();
+    }
+}
+
+Question: What will be the output?
+Answer: Meow
+
+Follow-up: Why does sound() need to be public in Cat?
+Answer: Because interface methods are implicitly public, and overriding methods cannot have a more restrictive access level.
+
+Que 8:
+abstract class Parent {
+    abstract void display();
+}
+
+class Child extends Parent {
+    void display() {
+        System.out.println("Child Display");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.display();
+    }
+}
+
+
+Question: What will be the output?
+Answer: Child Display
+
+Follow-up: Can display() be declared private in Parent?
+Answer: No, because abstract methods must be public or protected to be overridden.
+
+Que 9:
+abstract class Employee {
+    abstract void work();
+}
+
+class Manager extends Employee {
+    void work() {
+        System.out.println("Managing Team");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Employee e = new Manager();
+        e.work();
+    }
+}
+
+Question: What will be the output?
+Answer: Managing Team
+
+Follow-up: What happens if Manager does not override work()?
+Answer: A compilation error occurs because work() is abstract and must be implemented.
+
+Que 10:
+abstract class Printer {
+    static void printMessage() {
+        System.out.println("Printing...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Printer.printMessage();
+    }
+}
+
+Question: What will be the output?
+Answer: Printing...
+
+Follow-up: Why can we call printMessage() without an object?
+Answer: Because it is a static method and belongs to the class, not an instance.
+
+Que 11:
+abstract class Bird {
+    abstract void fly();
+
+    void eat() {
+        System.out.println("Bird is eating");
+    }
+}
+
+class Sparrow extends Bird {
+    void fly() {
+        System.out.println("Sparrow is flying");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Sparrow s = new Sparrow();
+        s.fly();
+        s.eat();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Sparrow is flying  
+Bird is eating
+
+Follow-up: What happens if we remove fly() from Sparrow?
+Answer: A compilation error occurs because fly() is abstract and must be implemented.
+
+Que 12:
+abstract class Bank {
+    abstract int getInterestRate();
+
+    void displayRate() {
+        System.out.println("Interest Rate: " + getInterestRate() + "%");
+    }
+}
+
+class SBI extends Bank {
+    int getInterestRate() {
+        return 5;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        SBI s = new SBI();
+        s.displayRate();
+    }
+}
+
+Question: What will be the output?
+Answer: Interest Rate: 5%
+
+Follow-up: What will happen if we create another subclass ICICI with getInterestRate() returning 7 and call displayRate() on an ICICI object?
+Answer: The output will be Interest Rate: 7%.
+
+Que 13:
+abstract class Vehicle {
+    Vehicle() {
+        System.out.println("Vehicle Created");
+    }
+
+    Vehicle(String type) {
+        System.out.println(type + " Created");
+    }
+
+    abstract void run();
+}
+
+class Bike extends Vehicle {
+    Bike() {
+        super("Bike");
+    }
+
+    void run() {
+        System.out.println("Bike is running");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Bike b = new Bike();
+        b.run();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Bike Created  
+Bike is running
+
+Follow-up: What happens if super("Bike"); is removed?
+Answer: The default constructor of Vehicle will be called instead, and the output will change to:
+Vehicle Created  
+Bike is running
+
+Que 14:
+abstract class Appliance {
+    final void powerOn() {
+        System.out.println("Powering On...");
+    }
+
+    abstract void operate();
+}
+
+class WashingMachine extends Appliance {
+    void operate() {
+        System.out.println("Washing Clothes");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        WashingMachine wm = new WashingMachine();
+        wm.powerOn();
+        wm.operate();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Powering On...  
+Washing Clothes
+
+Follow-up: Can we override powerOn() in WashingMachine?
+Answer: No, because it is declared final in the abstract class.
+
+Que 15:
+interface Animal {
+    void makeSound();
+}
+
+abstract class Mammal implements Animal {
+    void sleep() {
+        System.out.println("Sleeping...");
+    }
+}
+
+class Dog extends Mammal {
+    public void makeSound() {
+        System.out.println("Barking");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.makeSound();
+        d.sleep();
+    }
+}
+
+Question: What will be the output?
+Answer:
+Barking  
+Sleeping...
+
+Follow-up: Why does Mammal not implement makeSound()?
+Answer: Because it is an abstract class and can leave method implementation to subclasses.
+
+==================================================================================================
+
+PROBLEM CODE:
+ENCAPSULATION:
+
+Que 1:
+class Student {
+    private int rollNo;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.rollNo = 101;
+    }
+}
+
+Question: What is the error in this code?
+Answer: rollNo is private and cannot be accessed directly.
+
+Follow-up: How can we modify this code to access rollNo?
+Answer: Use getter and setter methods.
+
+Que 2:
+class Employee {
+    private String name;
+    private double salary;
+    
+    void setSalary(double s) {
+        salary = s;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Employee e = new Employee();
+        e.setSalary(50000);
+        System.out.println(e.salary);
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: salary is private and cannot be accessed directly.
+
+Follow-up: How do we fix this issue?
+Answer: Add a getSalary() method to retrieve the value.
+
+Que 3:
+class Singleton {
+    private static Singleton instance;
+    private Singleton() {}
+
+    static Singleton getInstance() {
+        return new Singleton();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Singleton s1 = new Singleton();
+    }
+}
+
+Question: Why does this code give an error?
+Answer: The constructor of Singleton is private, so it cannot be instantiated directly.
+
+Follow-up: How should an object of Singleton be created?
+Answer: Use Singleton.getInstance(); instead of new Singleton();.
+
+Que 4:
+class Car {
+    private String model;
+    private int speed;
+    
+    void setModel(String model) {
+        model = model;
+    }
+    
+    String getModel() {
+        return model;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Car c = new Car();
+        c.setModel("Tesla");
+        System.out.println(c.getModel());
+    }
+}
+
+Question: Why does System.out.println(c.getModel()); print null instead of "Tesla"?
+Answer: The setModel() method has a scope issue—it assigns model = model; instead of this.model = model;.
+
+Follow-up: How can we correct this mistake?
+Answer: Change model = model; to this.model = model; in setModel().
+
+Que 5:
+class BankAccount {
+    private final double balance;
+    
+    BankAccount(double balance) {
+        this.balance = balance;
+    }
+    
+    void setBalance(double balance) {
+        this.balance = balance;
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: balance is final and cannot be reassigned in setBalance().
+
+Follow-up: How should we modify balance safely?
+Answer: Use a method like deposit() or withdraw() instead of setBalance().
+
+Que 6:
+class Laptop {
+    private String brand;
+    
+    Laptop(String brand) {
+        this.brand = brand;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Laptop l = new Laptop("Dell");
+        System.out.println(l.brand);
+    }
+}
+
+Question: Why does this code produce an error?
+Answer: brand is private and cannot be accessed directly.
+
+Follow-up: How can we retrieve the value of brand?
+Answer: Add a public getBrand() method.
+
+Que 7:
+class Person {
+    private int age;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.age = 25;
+    }
+}
+
+Question: What is the issue with this code?
+Answer: age is private and cannot be accessed directly.
+
+Follow-up: How can we modify age properly?
+Answer: Use a setter method like setAge(int age).
+
+Que 8:
+class Address {
+    private String city;
+    
+    Address(String city) {
+        this.city = city;
+    }
+    
+    String getCity() {
+        return city;
+    }
+}
+
+class Employee {
+    private Address address;
+    
+    Employee(Address address) {
+        this.address = address;
+    }
+    
+    Address getAddress() {
+        return address;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Address addr = new Address("New York");
+        Employee e = new Employee(addr);
+        e.getAddress().city = "Los Angeles";
+        System.out.println(e.getAddress().getCity());
+    }
+}
+
+Question: What is wrong with this encapsulation approach?
+Answer: The private field city is indirectly modified through the returned Address object.
+
+Follow-up: How can we prevent modification of city?
+Answer: Return a copy of Address in getAddress() instead of the original object.
+
+Que 9:
+class Parent {
+    private String secret = "Hidden";
+
+    public String getSecret() {
+        return secret;
+    }
+}
+
+class Child extends Parent {
+    public String getSecret() {
+        return "Revealed";
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        System.out.println(p.getSecret());
+    }
+}
+
+
+Question: What will this code output?
+Answer: Hidden
+
+Follow-up: Why does Child's getSecret() not override Parent's method?
+Answer: Because secret is private and Child does not inherit it.
+
+Que 10:
+class Book {
+    public String title;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Book b = new Book();
+        b.title = "Encapsulation in Java";
+        System.out.println(b.title);
+    }
+}
+
+
+Question: What is the issue with this class?
+Answer: title is public, breaking encapsulation.
+
+Follow-up: How can we make this properly encapsulated?
+Answer: Declare title as private and use getter and setter methods.
+
+Que 11:
+class Product {
+    private double price;
+    
+    public double getPrice() {
+        return price;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Product p = new Product();
+        p.price = 299.99;
+        System.out.println(p.getPrice());
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: price is private and cannot be assigned directly.
+
+Follow-up: How can we modify the price of the product?
+Answer: Add a setter method:
+public void setPrice(double price) {
+    this.price = price;
+}
+
+Que 12:
+class Bank {
+    private double balance;
+    
+    Bank(double balance) {
+        this.balance = balance;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Bank acc = new Bank(1000);
+        acc.balance += 500;
+        System.out.println(acc.balance);
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: The balance variable is private and cannot be accessed directly.
+
+Follow-up: How should we modify the balance correctly?
+Answer: Use deposit() and withdraw() methods instead of direct access.
+
+class User {
+    private String username;
+    
+    User(String username) {
+        this.username = username;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        User u = new User("JohnDoe");
+        u.username = "JaneDoe";
+        System.out.println(u.getUsername());
+    }
+}
+
+Question: Why does this code cause a compilation error?
+Answer: username is private and cannot be accessed directly.
+
+Follow-up: How can we allow modification of username?
+Answer: Add a setter method:
+public void setUsername(String username) {
+    this.username = username;
+}
+
+Que 14:
+class Game {
+    private final String name;
+    
+    Game(String name) {
+        this.name = name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: name is final, meaning it cannot be reassigned in setName().
+
+Follow-up: How can we allow the name to be set without breaking encapsulation?
+Answer: Remove the final keyword or use a constructor-only approach.
+
+Que 15:
+class Address {
+    private String city;
+    
+    Address(String city) {
+        this.city = city;
+    }
+    
+    public String getCity() {
+        return city;
+    }
+}
+
+class Student {
+    private Address address;
+    
+    Student(Address address) {
+        this.address = address;
+    }
+    
+    public Address getAddress() {
+        return address;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Address addr = new Address("New York");
+        Student s = new Student(addr);
+        s.getAddress().city = "Los Angeles";
+        System.out.println(s.getAddress().getCity());
+    }
+}
+
+Question: Why does this code break encapsulation?
+Answer: The private field city is indirectly modified through the returned Address object.
+
+Follow-up: How can we prevent modification of city?
+Answer: Return a copy of Address in getAddress() instead of the original object:
+public Address getAddress() {
+    return new Address(this.address.getCity());
+}
+
+ABSTRACTION:
+
+Que 1:
+abstract class Animal {
+    abstract void makeSound();
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.makeSound();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes cannot be instantiated directly.
+
+Follow-up: How can we correct this code?
+Answer: Create a subclass of Animal and instantiate that instead:
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Bark!");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.makeSound();
+    }
+}
+
+Que 2:
+abstract class Vehicle {
+    void start() {
+        System.out.println("Vehicle starting...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Vehicle v = new Vehicle();
+        v.start();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes cannot be instantiated, even if they don’t have abstract methods.
+
+Follow-up: How can we use Vehicle in a valid way?
+Answer: Extend Vehicle with a concrete class:
+class Car extends Vehicle {}
+
+public class Test {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+        v.start();
+    }
+}
+
+Que 3:
+abstract class Shape {
+    abstract void draw();
+}
+
+class Circle extends Shape {}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: The class Circle must implement the abstract method draw() or be declared abstract.
+
+Follow-up: How can we fix this issue?
+Answer: Implement the draw() method in Circle:
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+
+Que 4:
+abstract class Computer {
+    final void turnOn() {
+        System.out.println("Computer is turning on...");
+    }
+    
+    abstract void runProgram();
+}
+
+class Laptop extends Computer {
+    void turnOn() {
+        System.out.println("Laptop is turning on...");
+    }
+    
+    void runProgram() {
+        System.out.println("Running program on laptop...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Computer c = new Laptop();
+        c.turnOn();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: turnOn() is declared final in Computer, so it cannot be overridden in Laptop.
+
+Follow-up: How should we modify the Laptop class?
+Answer: Remove the turnOn() method from Laptop, as it should inherit the one from Computer.
+
+Que 5:
+abstract class Device {
+    Device() {
+        System.out.println("Device initialized");
+    }
+    
+    abstract void operate();
+}
+
+class Phone extends Device {
+    void operate() {
+        System.out.println("Phone is operating");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Device d = new Device();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes cannot be instantiated directly.
+
+Follow-up: What happens when we create a Phone object?
+Answer: The constructor of Device is called first, then Phone’s operate() method is available.
+
+Que 6:
+abstract class Gadget {
+    Gadget() {
+        System.out.println("Gadget created");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Gadget g = new Gadget();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes cannot be instantiated directly.
+
+Follow-up: How can we use the Gadget class correctly?
+Answer: Create a subclass and instantiate that:
+class Phone extends Gadget {}
+
+public class Test {
+    public static void main(String[] args) {
+        Gadget g = new Phone();
+    }
+}
+
+Que 7:
+abstract class Machine {
+    Machine() {
+        start();
+    }
+
+    abstract void start();
+}
+
+class Car extends Machine {
+    void start() {
+        System.out.println("Car starting...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Machine m = new Car();
+    }
+}
+
+Question: Will this code run correctly? If so, what will be the output?
+Answer: Yes, it will run. The output will be:
+Car starting...
+
+Follow-up: Why is the start() method called inside the Machine constructor?
+Answer: Because the subclass (Car) has overridden start(), it executes during the Machine constructor call.
+
+Que 8:
+class Animal {
+    abstract void makeSound();
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: A class containing an abstract method must also be abstract.
+
+Follow-up: How can we fix this?
+Answer: Declare Animal as an abstract class:
+abstract class Animal {
+    abstract void makeSound();
+}
+
+Que 9:
+interface Playable {
+    void play();
+}
+
+abstract class Instrument implements Playable {}
+
+public class Test {
+    public static void main(String[] args) {
+        Instrument i = new Instrument();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes are not required to implement interface methods, but they cannot be instantiated.
+
+Follow-up: How can we use Instrument correctly?
+Answer: Create a subclass that implements play():
+class Guitar extends Instrument {
+    public void play() {
+        System.out.println("Playing guitar...");
+    }
+}
+
+
+Que 10:
+abstract class Calculator {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+        System.out.println(c.add(5, 3));
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract classes cannot be instantiated.
+
+Follow-up: How can we access add() correctly?
+Answer: Use Calculator.add(5, 3); instead of creating an instance.
+
+Que 11:
+abstract class Bird {
+    abstract void fly();
+}
+
+class Penguin extends Bird {
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Bird b = new Penguin();
+        b.fly();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Penguin does not implement fly(), so it must be declared abstract.
+
+Follow-up: How can we fix this?
+Answer: Implement fly() in Penguin or declare Penguin as abstract.
+
+Que 12:
+abstract class Animal {
+    abstract void eat();
+}
+
+final class Dog extends Animal {}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Dog must implement eat() before it can be instantiated.
+
+Follow-up: How can we fix this?
+Answer: Implement eat() in Dog:
+
+final class Dog extends Animal {
+    void eat() {
+        System.out.println("Dog is eating...");
+    }
+}
+
+
+Que 13:
+abstract class Vehicle {
+    abstract void start();
+}
+
+abstract class Car extends Vehicle {}
+
+public class Test {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Car is still abstract and cannot be instantiated.
+
+Follow-up: How can we use Car correctly?
+Answer: Create a concrete subclass:
+class Sedan extends Car {
+    void start() {
+        System.out.println("Sedan is starting...");
+    }
+}
+
+
+Que 14:
+abstract class Device {
+    abstract void run() {
+        System.out.println("Device is running");
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Abstract methods cannot have a body.
+
+Follow-up: How can we correct this?
+Answer: Remove the body or make it a concrete method.
+
+Que 15:
+abstract class A {
+    abstract void methodA();
+}
+
+abstract class B {
+    abstract void methodB();
+}
+
+public class Test extends A, B {
+    void methodA() {
+        System.out.println("Method A");
+    }
+    
+    void methodB() {
+        System.out.println("Method B");
+    }
+}
+
+Question: Why does this code fail to compile?
+Answer: Java does not support multiple inheritance with classes.
+
+Follow-up: How can we achieve similar functionality?
+Answer: Use interfaces instead of abstract classes:
+interface A {
+    void methodA();
+}
+
+interface B {
+    void methodB();
+}
+
+class Test implements A, B {
+    public void methodA() { System.out.println("Method A"); }
+    public void methodB() { System.out.println("Method B"); }
+}
+
+========================================================================================
+
+MCQs
+ENCAPSULATION:
+
+What is Encapsulation in Java?
+a) Hiding the implementation details and only exposing methods
+b) Inheritance in Java
+c) A type of polymorphism
+d) Using static methods
+Answer: a) Hiding the implementation details and only exposing methods
+
+Which access modifier is commonly used to achieve encapsulation?
+a) private
+b) public
+c) protected
+d) default
+Answer: a) private
+
+How can we access private variables of a class from outside?
+a) Using getter and setter methods
+b) Declaring them as public
+c) Using constructors only
+d) It is not possible
+Answer: a) Using getter and setter methods
+
+What is the primary goal of encapsulation?
+a) Code optimization
+b) Code security and maintainability
+c) Faster execution
+d) Making all variables public
+Answer: b) Code security and maintainability
+
+In encapsulation, variables of a class should be:
+a) Public
+b) Private
+c) Protected
+d) Static
+Answer: b) Private
+
+What happens if getter methods are not provided in an encapsulated class?
+a) Data cannot be accessed outside the class
+b) Compilation error
+c) All variables will be accessible automatically
+d) Program runs slowly
+Answer: a) Data cannot be accessed outside the class
+
+Encapsulation improves:
+a) Security and reusability
+b) Performance
+c) Storage space
+d) Code execution speed
+Answer: a) Security and reusability
+
+Which principle does Encapsulation belong to?
+a) OOPS (Object-Oriented Programming)
+b) Functional Programming
+c) Procedural Programming
+d) None of the above
+Answer: a) OOPS (Object-Oriented Programming)
+
+Encapsulation is also known as:
+a) Data hiding
+b) Inheritance
+c) Polymorphism
+d) Abstraction
+Answer: a) Data hiding
+
+In Java, encapsulation is implemented by using:
+a) Private variables and public methods
+b) Public variables and methods
+c) Static classes
+d) Interfaces
+Answer: a) Private variables and public methods
+
+Medium Level (21-40)
+Can a class be fully encapsulated in Java?
+a) Yes, by making all data members private and providing public methods
+b) No, encapsulation is not possible in Java
+c) Yes, by using only static methods
+d) No, encapsulation requires public variables
+Answer: a) Yes, by making all data members private and providing public methods
+
+How can encapsulation improve code maintainability?
+a) By allowing modification of internal data without affecting external code
+b) By making all data public
+c) By increasing execution speed
+d) By removing constructors
+Answer: a) By allowing modification of internal data without affecting external code
+
+What is a common mistake when implementing encapsulation?
+a) Exposing private fields directly
+b) Using getter and setter methods
+c) Making methods public
+d) Using constructors
+Answer: a) Exposing private fields directly
+
+Which of the following is NOT an advantage of encapsulation?
+a) Code maintainability
+b) Code reusability
+c) Better performance
+d) Security
+Answer: c) Better performance
+
+Which keyword restricts access the most in Java?
+a) public
+b) protected
+c) default
+d) private
+Answer: d) private
+
+Encapsulation helps in:
+a) Preventing direct access to object data
+b) Increasing execution speed
+c) Reducing memory usage
+d) Allowing multiple inheritance
+Answer: a) Preventing direct access to object data
+
+What happens if a private variable does not have a setter method?
+a) It becomes read-only
+b) It becomes write-only
+c) It cannot be accessed at all
+d) The program crashes
+Answer: a) It becomes read-only
+
+Can a class have only setter methods and still be encapsulated?
+a) Yes, but it will be write-only
+b) No, encapsulation requires both getter and setter
+c) Yes, it is always allowed
+d) No, encapsulation requires all methods private
+Answer: a) Yes, but it will be write-only
+
+Which of the following is correct for encapsulation?
+a) Encapsulation is achieved through private variables and public methods
+b) Encapsulation can only be used in inheritance
+c) Encapsulation is the same as abstraction
+d) Encapsulation is not used in real applications
+Answer: a) Encapsulation is achieved through private variables and public methods
+
+What is the output of the following code?
+
+java
+Copy
+Edit
+class Test {
+    private int value = 10;
+    public int getValue() { return value; }
+}
+public class Main {
+    public static void main(String args[]) {
+        Test obj = new Test();
+        System.out.println(obj.getValue());
+    }
+}
+a) Compilation Error
+b) 10
+c) NullPointerException
+d) Runtime Error
+Answer: b) 10
+
+Hard Level (41-50)
+Can a final variable be changed through encapsulation?
+a) No, final variables cannot be modified
+b) Yes, using a setter method
+c) Yes, using a constructor
+d) No, unless reflection is used
+Answer: a) No, final variables cannot be modified
+
+Can we achieve encapsulation using an abstract class?
+a) Yes
+b) No
+c) Only with interfaces
+d) Only with static classes
+Answer: a) Yes
+
+How does encapsulation relate to loose coupling?
+a) It reduces dependencies between classes
+b) It increases dependencies
+c) It makes all methods static
+d) It does not affect coupling
+Answer: a) It reduces dependencies between classes
+
+Can encapsulation be broken using Java reflection?
+a) Yes
+b) No
+c) Only in Java 8+
+d) Only in interfaces
+Answer: a) Yes
+
+What is the effect of making a setter method private?
+a) The variable becomes read-only
+b) The variable becomes write-only
+c) The variable cannot be accessed at all
+d) Compilation error
+Answer: a) The variable becomes read-only
+
+Which statement is true about encapsulation in Java?
+a) It only works with public variables
+b) It protects the integrity of an object's data
+c) It allows variables to be modified directly
+d) It does not support polymorphism
+Answer: b) It protects the integrity of an object's data
+
+Can an encapsulated class have public variables?
+a) No, all variables must be private
+b) Yes, but it breaks encapsulation
+c) No, Java does not allow public variables
+d) Yes, it does not affect encapsulation
+Answer: b) Yes, but it breaks encapsulation
+
+How can encapsulation help in unit testing?
+a) It allows modification of private data without affecting other classes
+b) It makes all variables public for testing
+c) It reduces method calls
+d) It removes dependencies completely
+Answer: a) It allows modification of private data without affecting other classes
+
+Which OOP principle does encapsulation enforce the most?
+a) Inheritance
+b) Abstraction
+c) Encapsulation
+d) Polymorphism
+Answer: c) Encapsulation
+
+Which Java feature is closely related to encapsulation?
+a) Static methods
+b) Interfaces
+c) Access modifiers
+d) Switch statements
+Answer: c) Access modifiers
+
+What happens if both getter and setter methods are removed from an encapsulated class?
+a) The class remains encapsulated but inaccessible
+b) The class loses encapsulation
+c) The variables become public automatically
+d) Compilation error occurs
+Answer: a) The class remains encapsulated but inaccessible
+
+What happens when you provide only a getter method for a variable?
+a) It becomes read-only
+b) It becomes write-only
+c) It cannot be accessed at all
+d) It results in an error
+Answer: a) It becomes read-only
+
+Can encapsulation be applied to static variables?
+a) Yes, with private static variables
+b) No, static variables cannot be encapsulated
+c) Yes, but only in abstract classes
+d) No, static variables cannot have access modifiers
+Answer: a) Yes, with private static variables
+
+Which access modifier allows encapsulation while restricting access only within the same package?
+a) private
+b) public
+c) protected
+d) default (no modifier)
+Answer: d) default (no modifier)
+
+Why is encapsulation considered a good practice?
+a) It enhances security by restricting access to data
+b) It increases code size
+c) It makes variables public
+d) It slows down execution
+Answer: a) It enhances security by restricting access to data
+
+What happens if you define a class with all public fields?
+a) Encapsulation is broken
+b) The code runs faster
+c) The program will not compile
+d) The class becomes abstract
+Answer: a) Encapsulation is broken
+
+Which of the following access modifiers supports maximum encapsulation?
+a) public
+b) protected
+c) private
+d) default
+Answer: c) private
+
+Can we override getter and setter methods in a subclass?
+a) Yes
+b) No
+c) Only if the superclass methods are final
+d) Only if the subclass is abstract
+Answer: a) Yes
+
+Can encapsulation be used in multi-threaded applications?
+a) Yes, it helps maintain data integrity
+b) No, encapsulation is only for single-threaded programs
+c) No, encapsulation prevents multiple threads from accessing data
+d) Yes, but only with static variables
+Answer: a) Yes, it helps maintain data integrity
+
+Which of the following is true about encapsulation?
+a) It hides data implementation details
+b) It is the same as inheritance
+c) It makes all methods static
+d) It does not affect security
+Answer: a) It hides data implementation details
+
+Can a constructor access private variables directly inside a class?
+a) Yes
+b) No
+c) Only if it's public
+d) Only if it's static
+Answer: a) Yes
+
+Why is it recommended to use getter and setter methods instead of accessing fields directly?
+a) It provides more control over data access
+b) It increases memory usage
+c) It speeds up execution
+d) It makes all data public
+Answer: a) It provides more control over data access
+
+Can an encapsulated class be extended using inheritance?
+a) Yes, but private members cannot be inherited
+b) No, encapsulated classes cannot be inherited
+c) Yes, but only using interfaces
+d) No, encapsulation does not support inheritance
+Answer: a) Yes, but private members cannot be inherited
+
+What is the advantage of data hiding in encapsulation?
+a) It protects the integrity of data
+b) It speeds up execution
+c) It allows direct variable modification
+d) It makes all methods private
+Answer: a) It protects the integrity of data
+
+Can encapsulation be achieved using interfaces in Java?
+a) No, interfaces cannot encapsulate data
+b) Yes, by using private methods in interfaces (Java 9+)
+c) Yes, by making variables public
+d) No, encapsulation requires only abstract classes
+Answer: b) Yes, by using private methods in interfaces (Java 9+)
+
+If we remove all setter methods in an encapsulated class, what will happen?
+a) The class becomes read-only
+b) The class loses encapsulation
+c) It generates a compilation error
+d) The class becomes write-only
+Answer: a) The class becomes read-only
+
+How does encapsulation help in achieving modular programming?
+a) It isolates data from external code changes
+b) It removes dependencies from other classes
+c) It allows multiple inheritance
+d) It makes all classes static
+Answer: a) It isolates data from external code changes
+
+Can encapsulation be applied to methods in Java?
+a) Yes, using access modifiers
+b) No, only variables can be encapsulated
+c) No, methods are always public
+d) Yes, but only in final classes
+Answer: a) Yes, using access modifiers
+
+How can encapsulation improve security in Java applications?
+a) By restricting direct access to sensitive data
+b) By allowing modification of all fields
+c) By making all fields public
+d) By increasing execution time
+Answer: a) By restricting direct access to sensitive data
+
+What happens when you create getter methods without setter methods?
+a) The variable becomes read-only
+b) The variable becomes write-only
+c) The variable cannot be accessed
+d) The program crashes
+Answer: a) The variable becomes read-only
+
+
+ABSTRACTION:
+
+What is abstraction in Java?
+a) Hiding implementation details and showing only essential features
+b) Hiding data using private variables
+c) Making all methods static
+d) Writing all methods in one class
+Answer: a
+
+Which keyword is used to define an abstract class?
+a) abstract
+b) interface
+c) final
+d) static
+Answer: a
+
+Can an abstract class have a constructor in Java?
+a) Yes
+b) No
+c) Only if all methods are abstract
+d) Only if there are no abstract methods
+Answer: a
+
+What must a class do if it extends an abstract class with an abstract method?
+a) It must implement all abstract methods
+b) It must be marked as abstract
+c) It cannot extend the abstract class
+d) It must override the constructor
+Answer: a
+
+What happens if an abstract method is not implemented in a subclass?
+a) Compilation error
+b) Runtime error
+c) The program runs fine
+d) The abstract method is ignored
+Answer: a
+
+Can we create an instance of an abstract class?
+a) Yes
+b) No
+c) Only if it has a constructor
+d) Only in a static method
+Answer: b
+
+What is the default modifier of methods inside an interface?
+a) private
+b) public
+c) protected
+d) default
+Answer: b
+
+How many abstract methods must an abstract class have?
+a) At least one
+b) Exactly one
+c) Any number, including zero
+d) Cannot have concrete methods
+Answer: c
+
+What is the primary use of abstraction in Java?
+a) To increase performance
+b) To hide implementation details and simplify code usage
+c) To avoid inheritance
+d) To make all methods static
+Answer: b
+
+Can an abstract class have final methods?
+a) Yes
+b) No
+c) Only static methods can be final
+d) Only private methods can be final
+Answer: a
+
+Medium Level MCQs
+Which of the following is true about an abstract class?
+a) It can contain abstract and concrete methods
+b) It cannot have member variables
+c) It must have only abstract methods
+d) It cannot have a constructor
+Answer: a
+
+Can we declare an abstract method as static?
+a) Yes
+b) No
+c) Only if it is private
+d) Only if it is final
+Answer: b
+
+What is the purpose of an interface in Java?
+a) To achieve multiple inheritance
+b) To define a class
+c) To provide method implementation
+d) To allow instance creation
+Answer: a
+
+Can an interface have constructors?
+a) Yes
+b) No
+c) Only if all methods are static
+d) Only if it extends an abstract class
+Answer: b
+
+Can an abstract class be final?
+a) Yes
+b) No
+c) Only if it has no abstract methods
+d) Only if it implements an interface
+Answer: b
+
+Can an abstract class implement an interface?
+a) Yes
+b) No
+c) Only if all methods are implemented
+d) Only if the interface has only static methods
+Answer: a
+
+Which of the following is true about interfaces?
+a) All methods are public by default
+b) Interfaces can have constructors
+c) Interfaces can have instance variables
+d) Interfaces cannot extend other interfaces
+Answer: a
+
+Can an interface contain default methods?
+a) Yes
+b) No
+c) Only if they are static
+d) Only if they are final
+Answer: a
+
+Which of the following cannot be part of an interface?
+a) static methods
+b) final variables
+c) private methods
+d) instance variables
+Answer: d
+
+Which of the following statements about abstract classes is false?
+a) An abstract class can extend another abstract class
+b) An abstract class can implement multiple interfaces
+c) An abstract class can be instantiated
+d) An abstract class can have concrete methods
+Answer: c
+
+Hard Level MCQs
+Can an interface extend multiple interfaces?
+a) Yes
+b) No
+c) Only if all interfaces are empty
+d) Only if no abstract classes are involved
+Answer: a
+
+Can an interface extend an abstract class?
+a) Yes
+b) No
+c) Only if the abstract class has only static methods
+d) Only if the interface is marked as abstract
+Answer: b
+
+What is the main difference between an abstract class and an interface?
+a) Abstract classes can have constructors, interfaces cannot
+b) Interfaces can have instance variables, abstract classes cannot
+c) Abstract classes cannot have concrete methods
+d) Interfaces can be instantiated
+Answer: a
+
+Can a class implement multiple interfaces?
+a) Yes
+b) No
+c) Only if they have the same methods
+d) Only if all methods are private
+Answer: a
+
+Can an abstract class have private abstract methods?
+a) Yes
+b) No
+c) Only if they are static
+d) Only if they are final
+Answer: b
+
+Can an interface method be protected?
+a) Yes
+b) No
+c) Only if it is static
+d) Only if it is abstract
+Answer: b
+
+What is the default access modifier for an abstract class?
+a) private
+b) public
+c) default (package-private)
+d) protected
+Answer: c
+
+Can a class be both abstract and final?
+a) Yes
+b) No
+c) Only if all methods are static
+d) Only if it has no constructor
+Answer: b
+
+What happens if an abstract class has only concrete methods?
+a) It compiles successfully
+b) It causes a compilation error
+c) It must be marked as final
+d) It cannot extend another class
+Answer: a
+
+Which of the following statements is true?
+a) An interface can have final methods
+b) A class can extend multiple abstract classes
+c) An abstract class can have a constructor
+d) A private method can be abstract
+Answer: c
+
+Which of the following is true about abstract classes?
+a) Abstract classes cannot have static methods
+b) Abstract classes can contain both abstract and non-abstract methods
+c) Abstract classes cannot extend another class
+d) Abstract classes must override all parent class methods
+Answer: b
+
+What is the main purpose of an abstract class?
+a) To prevent object creation
+b) To define common behavior for subclasses
+c) To enforce strict data hiding
+d) To allow multiple inheritance
+Answer: b
+
+How many interfaces can a class implement?
+a) One
+b) Multiple
+c) Zero
+d) Only abstract classes can implement interfaces
+Answer: b
+
+What happens if an abstract class does not implement all interface methods?
+a) It must be declared abstract
+b) It causes a compilation error
+c) It is converted into a concrete class
+d) It must declare those methods as final
+Answer: a
+
+Can an interface have variables?
+a) Yes, but they must be static and final
+b) No, interfaces cannot have variables
+c) Only protected variables are allowed
+d) Yes, but only private variables are allowed
+Answer: a
+
+What will happen if we try to create an object of an abstract class?
+a) Compilation error
+b) Runtime error
+c) Object is created successfully
+d) The program executes but the object remains null
+Answer: a
+
+Can we declare an abstract method as synchronized?
+a) Yes
+b) No
+c) Only if it is inside an interface
+d) Only if it is final
+Answer: b
+
+What happens when a class implements two interfaces with the same default method?
+a) Compilation error
+b) The class must override the method
+c) The method from the first implemented interface is used
+d) Java automatically resolves the conflict
+Answer: b
+
+What is the key benefit of interfaces in Java?
+a) They improve performance
+b) They allow multiple inheritance
+c) They prevent object creation
+d) They allow private constructors
+Answer: b
+
+Which of the following statements about abstract classes is false?
+a) An abstract class can have constructors
+b) An abstract class can implement an interface
+c) An abstract class can be instantiated using new keyword
+d) An abstract class can have concrete methods
+Answer: c
+
+Can an abstract class have instance variables?
+a) Yes
+b) No
+c) Only if they are final
+d) Only if they are static
+Answer: a
+
+What happens if a concrete class extends an abstract class without implementing all abstract methods?
+a) Compilation error
+b) Runtime error
+c) The abstract methods are ignored
+d) The class becomes abstract
+Answer: a
+
+Can an interface implement another interface?
+a) Yes
+b) No
+c) Only if both interfaces are abstract
+d) Only if the subclass is marked final
+Answer: a
+
+What is the default access level of an abstract method?
+a) public
+b) private
+c) protected
+d) default (package-private)
+Answer: a
+
+Which of the following statements about interfaces is true?
+a) Interfaces can have constructors
+b) Interfaces cannot have static methods
+c) Interfaces can extend multiple interfaces
+d) Interfaces cannot have any method implementations
+Answer: c
+
+Can we declare an abstract class as final?
+a) Yes
+b) No
+c) Only if it has no abstract methods
+d) Only if it has a static block
+Answer: b
+
+What is the correct way to define an abstract method in an abstract class?
+a) abstract void show() { }
+b) void show() { }
+c) abstract void show();
+d) void abstract show();
+Answer: c
+
+Can an interface contain private methods?
+a) Yes, starting from Java 9
+b) No, interfaces cannot have private methods
+c) Only if they are static
+d) Only if they are abstract
+Answer: a
+
+What will happen if a concrete class implements an interface but does not define all of its methods?
+a) Compilation error
+b) Runtime error
+c) The interface methods are ignored
+d) Java automatically provides implementations
+Answer: a
+
+Can an abstract class implement an interface without implementing all its methods?
+a) Yes, but it must remain abstract
+b) No, it must implement all methods
+c) Only if it has a constructor
+d) Only if it extends another class
+Answer: a
+
+What happens if we remove the abstract keyword from an abstract method?
+a) Compilation error
+b) The method is treated as concrete
+c) The method remains abstract
+d) The method is converted to final
+Answer: a
+
+Can an interface have an abstract method?
+a) Yes, all non-default methods in an interface are implicitly abstract
+b) No, interfaces cannot have abstract methods
+c) Only if it extends another interface
+d) Only if the method is static
+Answer: a
+
+What is the main advantage of using abstract classes over interfaces?
+a) Abstract classes can have implemented methods
+b) Interfaces allow multiple inheritance
+c) Abstract classes execute faster
+d) Abstract classes allow private variables
+Answer: a
+
+Which statement is true about an interface method with a default implementation?
+a) It must be overridden
+b) It can be called using an instance of a class implementing the interface
+c) It cannot have any method body
+d) It must be marked as static
+Answer: b
+
+Can we declare a method inside an interface with a body?
+a) Yes, if it is default or static
+b) No, interfaces cannot have method bodies
+c) Only if the method is private
+d) Only if it is protected
+Answer: a
